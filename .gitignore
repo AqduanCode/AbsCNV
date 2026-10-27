@@ -1,0 +1,10 @@
+# Generated analysis results
+/output/
+*.jld2
+
+# Local editor and OS files
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+.DS_Store
