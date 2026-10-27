@@ -10,18 +10,6 @@
 
 Absolute CN labels depend on the supplied `modal_peak_copy_number` assumption. RD normalization alone does not establish ploidy or tumor purity. Check the modal-CN assignment against independent biological information when available.
 
-### Key Features
-
-- **Integer-CN constrained GMM**: automatic candidate-peak detection and EM fitting with component means on an integer-CN lattice.
-- **Broad Gaussian background**: a full-support background component competes with integer-CN components over the entire RD domain.
-- **Multi-sample alignment**: optional common reference for modal-peak selection and initial CN spacing, followed by sample-specific EM fits.
-- **Background-aware inference**: explicit background/uncertain calls and skipped pairwise states.
-- **Pairwise CN comparison**: compares shared absolute CN labels across samples.
-- **Adjacent-region extension**: optionally promotes callable neighboring intervals using normalized RD differences.
-- **Visualization and export**: CNV regions, representative CN pairs, skipped regions, and RD plots.
-
-Pairwise comparison uses the reported probability threshold without a multiple-testing correction.
-
 ## Table of Contents
 
 - [Installation](#installation)
@@ -45,7 +33,7 @@ Pairwise comparison uses the reported probability threshold without a multiple-t
 
 ### Requirements
 
-- Julia 1.11 (tested with Julia 1.11.5).
+- Julia 1.6 or higher.
 - Packages: CSV, DataFrames, Plots, StatsBase, Distributions, DelimitedFiles, MultipleTesting, Statistics, Random, and JLD2 (for saved intermediate results).
 
 ### Setup
@@ -53,14 +41,10 @@ Pairwise comparison uses the reported probability threshold without a multiple-t
 ```bash
 git clone https://github.com/AqduanCode/AbsCNV
 cd AbsCNV
+# Download package
 julia --project=. -e 'using Pkg; Pkg.instantiate()'
 ```
 
-In Windows PowerShell, the same single-quoted `-e` argument works. Start Julia in the repository environment:
-
-```bash
-julia --project=.
-```
 
 ```julia
 include("MyFunctions.jl")
@@ -68,7 +52,6 @@ include("MyProcess.jl")
 using JLD2
 ```
 
-Load `MyFunctions.jl` first. `MyProcess.jl` tries to install its listed packages if loading fails; instantiate the project before including it.
 
 ### Project Structure
 
